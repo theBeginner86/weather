@@ -1,3 +1,17 @@
+<h1>Weather App</h1>
+
+This is a project made for submission of Software Engineering Principles (CSI1007) class.
+
+<h3>Techstack:</h3>
+
+- UI: React, NextJS
+- Backend: GoLang
+- DB: SQLite
+
+<hr>
+
+<h2>Project Structure</h2>
+
     .
     ├── server                             # server
     |   ├── handlers                         # backend handlers
@@ -29,3 +43,9 @@
     ├── README.md                            # this file    
     ├── Makefile                             # makefile for the project (includes all types of commands)
     └── LICENSE                              # Project License
+
+<hr>
+
+[Copyright (c)](/LICENSE) <br>
+
+Developed and Maintained by Pranav Singh
