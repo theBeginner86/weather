@@ -10,3 +10,5 @@ ui-dev:
 ui-lint:
 	cd ui; npm run lint; cd ..
 
+backend:
+	cd server; go run main.go; cd ..;

@@ -17,8 +17,8 @@ module.exports = compose([
     webpack: (config) => {
       const env = new webpack.EnvironmentPlugin({
         "process.env.NODE_ENV": process.env.NODE_ENV || "production",
-        REACT_APP_API_KEY: "6dbde2c35e994ab73a5b6499ea715f4e",
-        REACT_APP_API_URL: 'https://api.openweathermap.org/data/2.5'
+        REACT_APP_API_KEY: process.env.REACT_APP_API_KEY,
+        REACT_APP_API_URL: process.env.REACT_APP_API_URL,
       })
      config.plugins = [
       ...config.plugins,
