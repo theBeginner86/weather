@@ -4,11 +4,18 @@ import (
 	"net/http"
 	"path/filepath"
 	"strings"
+	// "os"
 
 	"github.com/sirupsen/logrus"
 )
 
 func ServeUI(w http.ResponseWriter, r *http.Request, reqBasePath, baseFolderPath string) {
+	// home, err := os.UserHomeDir()
+	// if err != nil {
+	// 	logrus.Error("Error getting user home directory: ", err)
+	// 	http.Error(w, "Error getting user home directory", http.StatusInternalServerError)
+	// 	return
+	// }
 	reqURL := r.URL.Path
 	reqURL = strings.Replace(reqURL, reqBasePath, "", 1)
 
@@ -21,7 +28,7 @@ func ServeUI(w http.ResponseWriter, r *http.Request, reqBasePath, baseFolderPath
 		filePath.WriteString(".html")
 	}
 
-	logrus.Infof("Serving file: %s", filePath.String())
-	finalPath := filepath.Join(baseFolderPath, filePath.String())
-	http.ServeFile(w, r, finalPath)
+	// finalPath := filepath.Join(baseFolderPath, filePath.String())
+	logrus.Infof("Serving file: %s", "/Users/pranavsingh/Documents/OS/Internal/weather/ui/out"+filePath.String())
+	http.ServeFile(w, r, "/Users/pranavsingh/Documents/OS/Internal/weather/ui/out"+filePath.String())
 }
