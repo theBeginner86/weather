@@ -1,0 +1,49 @@
+{
+	"presets": [
+			[
+				"@babel/preset-env",
+				{
+					"useBuiltIns": "usage",
+					"debug": false,
+					"corejs": 3
+				}
+			],
+			["@babel/preset-react",
+				{
+					"runtime": "automatic"
+				}
+			]
+		],
+		"plugins": [
+			[
+				"@babel/plugin-transform-runtime",
+				{
+					"regenerator": true
+				}
+			],
+			[
+				"@babel/plugin-proposal-class-properties",
+				{
+					"loose": true
+				}
+			],
+			[
+				"transform-react-remove-prop-types",
+				{
+					"removeImport": true
+				}
+			],
+			[
+				"@babel/plugin-proposal-private-methods",
+				 { "loose": true }
+			],
+			["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
+			["styled-jsx/babel"],
+		],
+		"env": {
+			"development": {
+				"sourceMaps": true,
+      	"retainLines": true
+			}
+		}
+}

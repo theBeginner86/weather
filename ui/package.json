@@ -3,19 +3,48 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node ui_dev_server.js",
     "build": "next build",
     "export": "next export",
-    "start": "next start",
+    "start": "NODE_ENV=production node ui_dev_server.js",
     "lint": "next lint"
   },
   "dependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.6",
+    "@babel/plugin-transform-runtime": "^7.19.6",
+    "@babel/preset-env": "^7.19.4",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/runtime": "^7.20.1",
+    "@emotion/cache": "^11.10.5",
+    "@emotion/react": "^11.10.5",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.5",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.12",
+    "@zeit/next-css": "^1.0.1",
+    "core-js": "^3.26.0",
+    "cross-env": "^7.0.3",
+    "moment": "^2.29.4",
     "next": "13.0.0",
+    "next-compose": "^0.0.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-bootstrap": "^2.5.0",
+    "react-dom": "18.2.0",
+    "semantic-ui-react": "^2.1.3",
+    "styled-components": "^5.3.6",
+    "styled-jsx": "^5.1.0",
+    "webpack-assets-manifest": "^5.1.0",
+    "webpack-bundle-analyzer": "^4.7.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
   },
   "devDependencies": {
     "eslint": "8.26.0",
-    "eslint-config-next": "13.0.0"
+    "eslint-config-next": "13.0.0",
+    "http-proxy": "^1.18.1",
+    "webpack": "^5.74.0"
   }
 }
