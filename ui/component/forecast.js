@@ -23,7 +23,7 @@ export default function Forecast(props, {weatherData}) {
 
   const { forecast } = props;
 
-  console.log("Forecast", forecast);
+  // console.log("Forecast", forecast);
 
   const results = forecast.map((item, index) => {
 
