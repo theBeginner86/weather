@@ -3,10 +3,13 @@ import React, { useEffect, useState } from "react";
 import { Dimmer, Loader } from 'semantic-ui-react';
 import Weather from './weather';
 import Forecast from './forecast';
+import { TextField } from "@mui/material";
+import Button from '@mui/material/Button';
 
 export default function HomePage() {
   
   const [lat, setLat] = useState(12.9728884);
+  const [area, setArea] = useState('');
   const [long, setLong] = useState(79.1586721);
   const [weatherData, setWeatherData] = useState([]);
   const [forecast, setForecast] = useState([]);
@@ -20,7 +23,7 @@ export default function HomePage() {
     
       getWeather(lat, long)
       .then(weather => {
-        console.log("setting weather...", weather);
+        
         setWeatherData(weather);
         setError(null);
       })
@@ -30,7 +33,7 @@ export default function HomePage() {
 
       getForecast(lat, long)
         .then(data => {
-          console.log("setting forecast...", data);
+          
           setForecast(data);
           setError(null);
         })
@@ -50,7 +53,7 @@ export default function HomePage() {
 
   const getWeather = async(lat, long) => {
     return fetch(
-      `${process.env.REACT_APP_API_URL}/weather/?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
+      `${process.env.APP_API_URL}/weather/?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.APP_API_KEY}`
     )
       .then(res => handleResponse(res))
       .then(weather => {
@@ -63,7 +66,7 @@ export default function HomePage() {
   
   const getForecast = async (lat, long) => {
     return fetch(
-      `${process.env.REACT_APP_API_URL}/forecast/?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
+      `${process.env.APP_API_URL}/forecast/?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.APP_API_KEY}`
     )
       .then(res => handleResponse(res))
       .then(forecastData => {
@@ -71,6 +74,23 @@ export default function HomePage() {
           return forecastData.list
             .filter(forecast => forecast.dt_txt.match(/09:00:00/))
             .map(mapDataToWeatherInterface);
+        }
+      });
+  }
+
+  const handleChange = (e) => {
+    setArea(event.target.value);
+  }
+
+  const handleSearch = async () => {
+    return fetch(
+      `${process.env.GEO_API_URL}?q=${area}&APPID=${process.env.APP_API_KEY}`
+    )
+      .then(res => handleResponse(res))
+      .then(areaMetaData => {
+        if (Object.entries(areaMetaData).length) {
+          setLat(areaMetaData[0].lat);
+          setLong(areaMetaData[0].lon);
         }
       });
   }
@@ -96,7 +116,10 @@ export default function HomePage() {
   
   return (
     <div className="App">
-    {console.log("weatherData(redendering)", weatherData)}
+    <div style={{margin: "2rem auto", width:"fit-content"}}>
+      <TextField id="standard-basic" label="Search" variant="standard" value={area} onChange={handleChange}/>
+      <Button variant="contained" onClick={handleSearch} sx={{marginLeft: "1rem", marginTop: "0.7rem"}}> Search</Button>
+    </div>
       {(weatherData?.length != 0 && forecast?.length != 0)  ? (
         <div>
           <Weather weatherData={weatherData}/>
